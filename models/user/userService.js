@@ -24,7 +24,7 @@ const login = async (email, password) => {
     return null;
 };
 
-const register = async (email, password, name, avatar, address) => {
+const register = async (email, password, name, birthday, address, numberPhone, avatar) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
     const user_server = await user_model.findOne({ 'email': email });
@@ -34,7 +34,7 @@ const register = async (email, password, name, avatar, address) => {
         if (email == "" || password == "") {
             return;
         } else {
-            const user = new user_model({ email, password: hash, name, avatar, address });
+            const user = new user_model({ email, password: hash, name, birthday, address, numberPhone, avatar });
             await user.save();
             return user;
         }

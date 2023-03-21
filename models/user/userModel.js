@@ -9,7 +9,6 @@ const user_model = new Schema({
   address: { type: String, default: 'Dĩ An - Bình Dương'},
   numberPhone: { type: String, default: '0778023038'},
   avatar: { type: String, default: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80' },
-  listIdReceiver: {type: Array, default: [] },
   //updateAt: { type: Date, default: Date.now },
 });
 

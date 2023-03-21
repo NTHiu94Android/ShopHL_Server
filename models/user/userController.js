@@ -37,10 +37,10 @@ const login = async (email, password) => {
     }
 };
 
-const register = async (email, password, name, imageAvatar, address) => {
+const register = async (email, password, name, birthday, address, numberPhone, avatar) => {
     try {
         const user = await userService.register(
-            email, password, name, imageAvatar, address
+            email, password, name, birthday, address, numberPhone, avatar
         );
         return user;
     } catch (error) {

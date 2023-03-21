@@ -16,18 +16,6 @@ const storage = new CloudinaryStorage({
   },
 });
 
-// const cloudinaryImageUploadMethod = async (file) => {
-//   return new Promise(resolve => {
-//       cloudinary.uploader.upload(file, (err, res) => {
-//           if (err) return res.status(500).send("upload image error")
-//           resolve({
-//               res: res.secure_url
-//           })
-//       }
-//       )
-//   })
-// }
 const upload = multer({ storage: storage });
 
 module.exports = upload;
-//module.exports = multer({ storage });
