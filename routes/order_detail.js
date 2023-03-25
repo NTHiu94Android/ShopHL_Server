@@ -37,5 +37,29 @@ router.post('/api/add-order_detail', async function (req, res, next) {
     }
 });
 
+//Xoa order_detail
+//http://localhost:3000/order_detail/api/delete-order_detail/5f9f1b0b0b1b1b1b1b1b1b1b
+router.get('/api/delete-order_detail/:id', async function (req, res, next) {
+    try {
+        const order_detail = await order_detail_controller.delete_order_detail(req.params.id);
+        res.json({ error: false, responeTime: new Date(), statusCode: 200, data: order_detail });
+    } catch (error) {
+        res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
+    }
+});
+
+//Update order_detail
+//http://localhost:3000/order_detail/api/update-order_detail/5f9f1b0b0b1b1b1b1b1b1b1b
+router.post('/api/update-order_detail/:id', async function (req, res, next) {
+    try {
+        const order_detail = await order_detail_controller.update_order_detail(
+            req.params.id, req.body.totalPrice, req.body.amount, req.body.idOrder, req.body.idProduct
+        );
+        res.json({ error: false, responeTime: new Date(), statusCode: 200, data: order_detail });
+    } catch (error) {
+        res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
+    }
+});
+
 
 module.exports = router;

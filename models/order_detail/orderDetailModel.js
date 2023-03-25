@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const order_detail_model = new Schema({
   totalPrice: { type: Number },
-  amount: { type: String },
+  amount: { type: Number },
   idOrder: { type: String },
   idProduct: { type: String },
 });
