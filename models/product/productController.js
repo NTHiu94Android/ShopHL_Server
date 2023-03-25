@@ -1,5 +1,15 @@
 const product_service = require('../product/productService');
 
+//Lay tat ca product
+const onGetProducts = async () => {
+    try {
+        const products = await product_service.getProducts();
+        return products;
+    } catch (error) {
+        console.log('Error get products: ' + error.message);
+    }
+};
+
 //Lay product theo id
 const get_product = async (_idProduct) => {
     try {
@@ -21,9 +31,9 @@ const get_product_by_idBrand = async (_idBrand) => {
 };
 
 //Add product
-const add_product = async (name, price, describer, amount, color, idBrand) => {
+const add_product = async (name, price, describer, amount, color, idBrand, listImage, reviews) => {
     try {
-        const product = await product_service.add_product(name, price, describer, amount, color, idBrand);
+        const product = await product_service.add_product(name, price, describer, amount, color, idBrand, listImage, reviews);
         return product;
     } catch (error) {
         console.log('Error add product: ' + error.message);
@@ -31,5 +41,5 @@ const add_product = async (name, price, describer, amount, color, idBrand) => {
 };
 
 module.exports = {
-    add_product, get_product, get_product_by_idBrand
+    add_product, get_product, get_product_by_idBrand, onGetProducts
 };

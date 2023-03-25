@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const order_model = new Schema({
   orderDate: { type: Date },
-  totalPrice: { type: number },
+  totalPrice: { type: Number },
   status: { type: String },
+  //"cart", "favorite", "ordered", "shipping", "delivered", "canceled", "returned", 
   idUser: { type: String },
 });
 

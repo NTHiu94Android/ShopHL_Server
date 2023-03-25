@@ -12,6 +12,12 @@ const get_order_by_idUser_and_status = async (_idUser, _status) => {
     return orders;
 };
 
+//Lay order theo id
+const get_order_by_id = async (_idOrder) => {
+    const order = await order_model.findById(_idOrder);
+    return order;
+};
+
 // add order
 const add_order = async (orderDate, totalPrice, status, idUser) => {
     const order = new order_model({ orderDate, totalPrice, status, idUser });
@@ -20,5 +26,5 @@ const add_order = async (orderDate, totalPrice, status, idUser) => {
 };
 
 module.exports = {
-    add_order, get_order_by_idUser, get_order_by_idUser_and_status
+    add_order, get_order_by_idUser, get_order_by_idUser_and_status, get_order_by_id
 };

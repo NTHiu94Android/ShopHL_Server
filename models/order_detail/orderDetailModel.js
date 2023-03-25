@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const order_detail_model = new Schema({
-  totalPrice: { type: number },
+  totalPrice: { type: Number },
   amount: { type: String },
   idOrder: { type: String },
   idProduct: { type: String },
