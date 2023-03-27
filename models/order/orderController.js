@@ -31,9 +31,9 @@ const get_order_by_idUser_and_status = async (_idUser, _status) => {
 };
 
 // add order
-const add_order = async (orderDate, totalPrice, status, idUser) => {
+const add_order = async (orderDate, totalPrice, status, quantity, idUser) => {
     try {
-        const order = await order_service.add_order(orderDate, totalPrice, status, idUser);
+        const order = await order_service.add_order(orderDate, totalPrice, status, quantity, idUser);
         return order;
     } catch (error) {
         console.log('Error add order: ' + error.message);

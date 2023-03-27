@@ -3,11 +3,11 @@ var router = express.Router();
 const order_controller = require('../models/order/orderController');
 
 //Tạo order
-//http://localhost:3000/order/api/create
-router.post('/api/create', async function (req, res, next) {
+//http://localhost:3000/order/api/create-order
+router.post('/api/create-order', async function (req, res, next) {
     try {
-        const { orderDate, totalPrice, status, idUser } = req.body;
-        const order = await order_controller.create(orderDate, totalPrice, status, idUser);
+        const { orderDate, totalPrice, status, quantity, idUser } = req.body;
+        const order = await order_controller.add_order(orderDate, totalPrice, status, quantity, idUser);
         res.json({ error: false, responeTime: new Date(), statusCode: 200, data: order });
     } catch (error) {
         res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });

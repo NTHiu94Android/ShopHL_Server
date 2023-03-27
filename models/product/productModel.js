@@ -7,7 +7,7 @@ const product_model = new Schema({
   describer: { type: String },
   amount: { type: Number },
   color: { type: Array },
-  idBrand: { type: String },
+  brand: { type: String },
   listImage: { type: Array },
   reviews: { type: Array },
 });

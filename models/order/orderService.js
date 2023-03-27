@@ -19,8 +19,8 @@ const get_order_by_id = async (_idOrder) => {
 };
 
 // add order
-const add_order = async (orderDate, totalPrice, status, idUser) => {
-    const order = new order_model({ orderDate, totalPrice, status, idUser });
+const add_order = async (orderDate, totalPrice, status, quantity, idUser) => {
+    const order = new order_model({ orderDate, totalPrice, status, quantity, idUser });
     await order.save();
     return order;
 };
