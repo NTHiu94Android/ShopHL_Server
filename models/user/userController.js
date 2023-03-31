@@ -1,4 +1,6 @@
+const mailer = require('nodemailer');
 const userService = require('./userService');
+const { getMaxListeners } = require('./userModel');
 
 const get_users = async () => {
     try {
@@ -68,20 +70,63 @@ const delete_user = async (_idUser) => {
     }
 };
 
+//send mail
+const transporter = mailer.createTransport({
+    pool: true,
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: 'ngochuongtr1975@gmail.com',
+        pass: 'evonernhfoelmaxh'
+    },
+});
+
+
 const forgot_password = async (email) => {
     try {
         const user = await userService.forgot_password(email);
-        if (user) {
-            return user;
+        if (user.resetPasswordToken) {
+            const mailOptions = {
+                from: '',
+                to: email,
+                subject: 'Reset password',
+                html: `<h1>Click <a href="http://localhost:3000/reset-password/${user.resetPasswordToken}">here</a> to reset password</h1>`
+            };
+            await transporter.sendMail(mailOptions);
+            return true;
         }
-        return null;
+        return false;
     } catch (error) {
         console.log('Error forgot_password: ' + error.message);
     }
 };
 
+// //Kiem tra token co hop le hay khong
+// const verify_token = async (token) => {
+//     const data = jwt.verify(token, 'shhhhh');
+//     if (data) {
+//         return true;
+//     }
+//     return false;
+// };
+
+//Reset password
+const reset_password = async (token, password, confirm_password) => {
+    if(password != confirm_password) {
+        console.log('Password and confirm password not match');
+        return false;
+    }
+    const data = jwt.verify(token, 'shhhhh');
+    if(data) {
+        const user = await userService.reset_password(token, password);
+        return user;
+    }
+    return null;
+};
+
 module.exports = { 
     get_user, get_users, login, register, 
-    update_user, delete_user, forgot_password,
+    update_user, delete_user, forgot_password, reset_password,
     get_users_by_username
 }

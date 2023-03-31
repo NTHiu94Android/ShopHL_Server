@@ -1,5 +1,6 @@
 const user_model = require('./userModel');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const get_users = async () => {
     const list_user = await user_model.find({});
@@ -56,7 +57,21 @@ const forgot_password = async (email) => {
     const user = await user_model.findOne({ email });
     if (user) {
         const token = jwt.sign({ user }, 'shhhhh', { expiresIn: '300s' });
-        user.accessToken = token;
+        user.resetPasswordToken = token;
+        await user.save();
+        return user;
+    }
+    return null;
+};
+
+//reset password
+const reset_password = async (token, password) => {
+    const user = await user_model.findOne({ resetPasswordToken: token });
+    if (user) {
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, salt);
+        user.password = hash;
+        user.resetPasswordToken = null;
         await user.save();
         return user;
     }
@@ -65,6 +80,6 @@ const forgot_password = async (email) => {
 
 module.exports = { 
     get_user, get_users, login, register, 
-    update_user, delete_user, forgot_password,
+    update_user, delete_user, forgot_password, reset_password,
     get_users_by_username 
 };

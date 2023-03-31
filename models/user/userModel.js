@@ -12,6 +12,9 @@ const user_model = new Schema({
   //updateAt: { type: Date, default: Date.now },
   cart: {type: Object},
   favorite: {type: Object},
+
+  //token reset password
+  resetPasswordToken: { type: String, require: false, default: null },
 });
 
 module.exports = mongoose.model('User', user_model);

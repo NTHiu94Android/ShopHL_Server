@@ -18,6 +18,7 @@ router.get('/api/get-order_detail-by-idOrder/:id', async function (req, res, nex
 router.get('/api/get-order_detail-by-idProduct/:id', async function (req, res, next) {
     try {
         const order_details = await order_detail_controller.get_order_detail_by_idProduct(req.params.id);
+        console.log("Order detail: ", order_details);
         res.json({ error: false, responeTime: new Date(), statusCode: 200, data: order_details });
     } catch (error) {
         res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });

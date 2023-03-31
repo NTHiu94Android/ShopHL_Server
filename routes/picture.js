@@ -8,7 +8,8 @@ const multer = require('../middleware/multer');
 const picture_controller = require('../models/picture/pictureController');
 
 //Lay picture theo id
-router.get('/get_picture/:id', async (req, res) => {
+//http://localhost:3000/picture/api/get_picture_by_id/5f9f1b0b0b2b2c2b8c8c8c8c
+router.get('/api/get_picture_by_id/:id', async (req, res) => {
    try{
       const id = req.params.id;
       const picture = await picture_controller.get_picture(id);
@@ -19,7 +20,8 @@ router.get('/get_picture/:id', async (req, res) => {
 });
 
 //Lay pictures theo color va idProduct
-router.get('/get_pictures_by_color/:color/:idProduct', async (req, res) => {
+//http://localhost:3000/picture/api/get_pictures_by_color/5f9f1b0b0b2b2c2b8c8c8c8c/Black
+router.get('/api/get_pictures_by_color/:idProduct/:color', async (req, res) => {
    try{
       const color = req.params.color;
       const idProduct = req.params.idProduct;

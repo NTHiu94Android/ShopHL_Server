@@ -9,7 +9,7 @@ const product_model = new Schema({
   color: { type: Array },
   brand: { type: String },
   listImage: { type: Array },
-  reviews: { type: Array },
+  reviews: { type: Number },
 });
 
 module.exports = mongoose.model('Product', product_model);
