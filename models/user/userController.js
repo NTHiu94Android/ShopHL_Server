@@ -1,6 +1,6 @@
 const mailer = require('nodemailer');
 const userService = require('./userService');
-const { getMaxListeners } = require('./userModel');
+const jwt = require('jsonwebtoken');
 
 const get_users = async () => {
     try {
@@ -91,7 +91,7 @@ const forgot_password = async (email) => {
                 from: '',
                 to: email,
                 subject: 'Reset password',
-                html: `<h1>Click <a href="http://localhost:3000/reset-password/${user.resetPasswordToken}">here</a> to reset password</h1>`
+                html: `<h1>Click <a href="http://localhost:3000/users/cpanel/reset-password/${user.resetPasswordToken}">here</a> to reset password</h1>`
             };
             await transporter.sendMail(mailOptions);
             return true;

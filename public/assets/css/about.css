@@ -1,0 +1,88 @@
+body{margin: 0px; margin: auto; background-color: black;}
+ .container{display: grid; grid-template-columns: 1fr 7fr 1fr;}
+/* --------------------------------------------------------------------------------------------------- */
+aside{width: 100%;}
+header{width: 100%; background-color: green; display: grid; grid-template-rows: auto auto auto auto;}
+    .image_logo{text-align: center; align-items: center; width: 100%;}
+    .image_logo img{height: 100%;}
+    .control{background-color: black; display: flex; flex-direction: row; justify-content: center; width: 100%;}
+    .control a{text-decoration: none; font-size: 16px; font-weight: bold; font-variant: small-caps; 
+                padding: 10px 25px; color: green; transition: all 0.5s linear;}
+    .control a:hover{
+        text-decoration: none; font-size: 16px; font-weight: bold; font-variant: small-caps; 
+        padding: 10px 25px; color: yellow;
+        transform: rotate(0deg) scale(1.5) skew(0deg) translate(0px);
+        -webkit-transform: rotate(0deg) scale(1.5) skew(0deg) translate(0px);
+        -moz-transform: rotate(0deg) scale(1.5) skew(0deg) translate(0px);
+        -o-transform: rotate(0deg) scale(1.5) skew(0deg) translate(0px);
+        -ms-transform: rotate(0deg) scale(1.5) skew(0deg) translate(0px);}
+    .image_home{width: 100%;}
+        .image_home img{width: 100%; height: 100%;}
+    .welcome{text-align: center; background-color: black; color: green;}
+        .welcome h3{margin: 10px;}
+/* --------------------------------------------------------------------------------------------------- */
+.body-main{width: 100%;}
+.container-main{width: 100%; display: flex; flex-direction: row;  align-items: center; justify-content: center;
+    background: url(https://img5.thuthuatphanmem.vn/uploads/2021/11/20/anh-ca-koi-dep_090130489.jpg) no-repeat content-box;}
+    .nd-main{width: 100%; margin-bottom: 0px; padding-bottom: 20px; padding-top: 10px;}
+    .nd-main p{
+        margin-left: 30px;
+        margin-right: 30px;
+        font-family: Verdana;
+        font-size: 11pt;
+        text-align: center;
+    }
+    form{display: flex; flex-direction: column; width: 500px; align-items: center; justify-content: center;}
+        form input{margin: 10px; width: 100%; padding: 5px; outline: none; border: 1px double black; border-radius: 10px;}
+        form textarea{margin: 10px; width: 100%; padding: 5px; outline: none; border: 1px double black; border-radius: 10px;}
+        form input:focus{box-shadow: 0 0 5px green;border: none; border-radius: 10px;}
+        form textarea:focus{box-shadow: 0 0 5px green;border: none; border-radius: 10px;}
+        form button{margin: 5px; width: 90px; padding: 10px; background-color: green; border: none; color: white; 
+            box-shadow: 5px 5px 5px gray; transition: all 0.5s linear; border-radius: 5px; font-weight: bold;}
+        form button:hover{
+            margin: 5px; width: 90px; padding: 10px; background-color: greenyellow;  color: black;
+            border: none; box-shadow: 5px 5px 5px gray; font-weight: bold; border-radius: 5px;
+            
+        }
+        form select {margin: 10px; width: 103%; padding: 5px; outline: none; border: 1px double black; border-radius: 10px; }
+        form img {width: 100%; height: 100%; border-radius: 20px;}
+/* --------------------------------------------------------------------------------------------------- */
+footer{width: 100%; display: flex; flex-direction: column;}
+    h4{color: green;}
+    .head_ft{background-color: whitesmoke; display: grid; grid-template-columns: 1fr 1fr 1fr 1.5fr;}
+        .logo_ft{text-align: center;}
+            .logo_ft img{transition:All 2s ease;}
+            .logo_ft img:hover{
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                transform: rotate(360deg);}
+        .nd1_ft{padding: 20px; padding-left: 30px;}
+            .nd1_ft div{display: flex; flex-direction: column;}
+            .nd1_ft a{text-decoration: none; margin-top: 5dp; margin-top: 5px; color: yellowgreen;}
+            .nd1_ft a:hover{text-decoration: none; margin-top: 5dp;color: goldenrod; margin-top: 5px;}
+
+        .thongtin{padding: 20px;} 
+            .thongtin div{display: flex; flex-direction: column;}
+            .thongtin a{text-decoration: none; margin-top: 5dp; margin-top: 5px; color: yellowgreen;}
+            .thongtin a:hover{text-decoration: none; margin-top: 5dp;color: goldenrod; margin-top: 5px;}
+        .lienket_ft{padding: 20px; align-items: center;}
+            .lienket_ft ul{display: flex; flex-direction: row;}
+            .lienket_ft ul li{list-style: none; }
+            .lienket_ft img{margin: 5px; transition:All 0.5s ease;}
+            .lienket_ft img:hover{
+                margin: 5px;transform: rotate(0deg) scale(1.1) skew(0deg) translate(0px);
+                -webkit-transform: rotate(0deg) scale(1.1) skew(0deg) translate(0px);
+                -moz-transform: rotate(0deg) scale(1.1) skew(0deg) translate(0px);
+                -o-transform: rotate(0deg) scale(1.1) skew(0deg) translate(0px);
+                -ms-transform: rotate(0deg) scale(1.1) skew(0deg) translate(0px);}
+
+    .foot_ft{margin: 0px; text-align: center; padding: 10px; background-color: whitesmoke;
+        font-size: 16px; font-weight: bold; font-variant: small-caps; }
+        .foot_ft span{color: orangered;}
+/* --------------------------------------------------------------------------------------------------- */
+@media (max-width: 576px){body{max-width: 560px;}}
+@media (max-width: 768px){ body{max-width: 720px;}}
+@media (max-width: 992px){body{max-width: 960px;}}
+@media (max-width: 1200px){body{max-width: 1170px;}}

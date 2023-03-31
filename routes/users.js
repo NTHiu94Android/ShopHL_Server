@@ -61,4 +61,28 @@ router.post('/api/reset-password', async function (req, res, next) {
   }
 });
 
+//reset password cpanel
+//http://localhost:3000/users/cpanel/reset-password/:token
+router.get('/cpanel/reset-password/:token', async function (req, res, next) {
+  try {
+    const { token } = req.params;
+    // const { password, confirm_password} = req.body;
+    // const user = await user_controller.reset_password(req.params.token, password, confirm_password);
+    res.render('reset-password', { token });
+  } catch (error) {
+    res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
+  }
+});
+
+
+// Handle the password reset form submission
+router.post('/cpanel/reset-successfully', async (req, res) => {
+  const { token, password, confirm_password } = req.body;
+  const user = await user_controller.reset_password(token, password, confirm_password);
+  if (!user) {
+    return res.status(400).send('Invalid token');
+  }
+  return res.status(200).send('Password reset successfully');
+});
+
 module.exports = router;
