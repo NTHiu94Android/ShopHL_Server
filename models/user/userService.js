@@ -42,9 +42,9 @@ const register = async (email, password, name, birthday, address, numberPhone, a
     }
 };
 
-const update_user = async (_idUser, email, password, name, birthday, address, numberPhone, avatar) => {
+const update_user = async (_idUser, email, name, birthday, address, numberPhone, avatar) => {
     const user = await user_model.findByIdAndUpdate(
-        _idUser, { email, password, name, birthday, address, numberPhone, avatar }
+        _idUser, { email, name, birthday, address, numberPhone, avatar }
     );
     return user;
 };
@@ -78,8 +78,21 @@ const reset_password = async (token, password) => {
     return null;
 };
 
+//Doi mat khau
+const change_password = async (id, new_password) => {
+    const user = await user_model.findById(id);
+    if (user) {
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(new_password, salt);
+        user.password = hash;
+        await user.save();
+        return user;
+    }
+
+};
+
 module.exports = { 
     get_user, get_users, login, register, 
     update_user, delete_user, forgot_password, reset_password,
-    get_users_by_username 
+    get_users_by_username, change_password
 };

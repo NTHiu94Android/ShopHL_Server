@@ -3,6 +3,18 @@ var router = express.Router();
 const user_controller = require('../models/user/userController');
 const order_controller = require('../models/order/orderController');
 
+
+//lay user theo id
+router.get('/api/get-user-by-id/:id', async function (req, res, next) {
+  try {
+    const { id } = req.params;
+    const user = await user_controller.get_user(id);
+    res.json({ error: false, responeTime: new Date(), statusCode: 200, data: user });
+  } catch (error) {
+    res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
+  }
+});
+
 //Đăng ký user tao luon cart va favorite cua user
 //http://localhost:3000/users/api/register
 router.post('/api/register', async function (req, res, next) {
@@ -11,8 +23,14 @@ router.post('/api/register', async function (req, res, next) {
     const user = await user_controller
       .register(email, password, name, birthday, address, numberPhone, avatar);
     if(user){
-      const cart = await order_controller.add_order(new Date(), 0, 'cart', 0, user._id);
-      const favorite = await order_controller.add_order(new Date(), 0, 'favorite', 0, user._id);
+      //Lay ngay hien tai
+      let date = new Date();
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      let today = day + '/' + month + '/' + year;
+      const cart = await order_controller.add_order(today, 0, 'cart', 0, user._id);
+      const favorite = await order_controller.add_order(today, 0, 'favorite', 0, user._id);
       user.cart = cart._id;
       user.favorite = favorite._id;
       user.save();
@@ -31,6 +49,30 @@ router.post('/api/login', async function (req, res, next) {
   try {
     const { email, password } = req.body;
     const user = await user_controller.login(email, password);
+    res.json({ error: false, responeTime: new Date(), statusCode: 200, data: user });
+  } catch (error) {
+    res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
+  }
+});
+
+//Đổi mật khẩu
+//http://localhost:3000/users/api/change-password
+router.post('/api/change-password', async function (req, res, next) {
+  try {
+    const { id, new_password, confirm_password } = req.body;
+    const user = await user_controller.change_password(id, new_password, confirm_password);
+    res.json({ error: false, responeTime: new Date(), statusCode: 200, data: user });
+  } catch (error) {
+    res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
+  }
+});
+
+//Cap nhat thong tin
+//http://localhost:3000/users/api/update-profile
+router.post('/api/update-profile', async function (req, res, next) {
+  try {
+    const { id, email, name, birthday, address, numberPhone, avatar } = req.body;
+    const user = await user_controller.update_user(id, email, name, birthday, address, numberPhone, avatar);
     res.json({ error: false, responeTime: new Date(), statusCode: 200, data: user });
   } catch (error) {
     res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
@@ -66,6 +108,7 @@ router.post('/api/reset-password', async function (req, res, next) {
 router.get('/cpanel/reset-password/:token', async function (req, res, next) {
   try {
     const { token } = req.params;
+    console.log(token);
     // const { password, confirm_password} = req.body;
     // const user = await user_controller.reset_password(req.params.token, password, confirm_password);
     res.render('reset-password', { token });
@@ -84,5 +127,6 @@ router.post('/cpanel/reset-successfully', async (req, res) => {
   }
   return res.status(200).send('Password reset successfully');
 });
+
 
 module.exports = router;

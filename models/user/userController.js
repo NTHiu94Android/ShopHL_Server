@@ -50,10 +50,10 @@ const register = async (email, password, name, birthday, address, numberPhone, a
     }
 };
 
-const update_user = async (_idUser, email, password, name, birthday, address, numberPhone, avatar) => {
+const update_user = async (_idUser, email, name, birthday, address, numberPhone, avatar) => {
     try {
         const user = await userService.update_user(
-            _idUser, email, password, name, birthday, address, numberPhone, avatar
+            _idUser, email, name, birthday, address, numberPhone, avatar
         );
         return user;
     } catch (error) {
@@ -125,8 +125,17 @@ const reset_password = async (token, password, confirm_password) => {
     return null;
 };
 
+const change_password = async ( id, new_password, confirm_password) => {
+    if(new_password != confirm_password) {
+        console.log('Password and confirm password not match');
+        return false;
+    }
+    const user = await userService.change_password(id, new_password);
+    return user;
+};
+
 module.exports = { 
     get_user, get_users, login, register, 
     update_user, delete_user, forgot_password, reset_password,
-    get_users_by_username
+    get_users_by_username, change_password
 }

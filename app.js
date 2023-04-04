@@ -28,6 +28,7 @@ app.use('/product', productRouter);
 app.use('/order', require('./routes/order'));
 app.use('/order_detail', require('./routes/order_detail'));
 app.use('/picture', require('./routes/picture'));
+app.use('/comment', require('./routes/comment'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
