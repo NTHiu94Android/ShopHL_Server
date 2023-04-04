@@ -31,9 +31,9 @@ const get_product_by_idBrand = async (_idBrand) => {
 };
 
 //Add product
-const add_product = async (name, price, describer, amount, color, brand, listImage, reviews) => {
+const add_product = async (name, price, describer, amount, color, idBrand, listImage, reviews) => {
     try {
-        const product = await product_service.add_product(name, price, describer, amount, color, brand, listImage, reviews);
+        const product = await product_service.add_product(name, price, describer, amount, color, idBrand, listImage, reviews);
         return product;
     } catch (error) {
         console.log('Error add product: ' + error.message);
