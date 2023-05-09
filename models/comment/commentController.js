@@ -1,4 +1,4 @@
-const cmt_service = require('../comment/CommentService');
+const cmt_service = require('../comment/commentService');
 
 //Lay comment theo idUser
 const get_cmt_by_idUser = async (idUser) => {
