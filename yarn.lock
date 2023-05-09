@@ -608,20 +608,20 @@
     "strip-ansi" "^6.0.0"
     "wrap-ansi" "^7.0.0"
 
-"cloudinary-core@^2.10.2":
+"cloudinary-core@2.13.0":
   "integrity" "sha512-Nt0Q5I2FtenmJghtC4YZ3MZZbGg1wLm84SsxcuVwZ83OyJqG9CNIGp86CiI6iDv3QobaqBUpOT7vg+HqY5HxEA=="
   "resolved" "https://registry.npmjs.org/cloudinary-core/-/cloudinary-core-2.13.0.tgz"
   "version" "2.13.0"
 
-"cloudinary@^1.21.0":
-  "integrity" "sha512-0aRLVOaVsoiqDCNkSzlPGR/oYOlE3AGrtwFTPx7xlZCPyKNzqeD9t9ENmPwzHn3yn/afAvy4h1sqb2yPyJOAow=="
-  "resolved" "https://registry.npmjs.org/cloudinary/-/cloudinary-1.35.0.tgz"
-  "version" "1.35.0"
+"cloudinary@^1.21.0", "cloudinary@^1.36.4":
+  "integrity" "sha512-F/90SVQdUbbEipCS4jTRvUt1lzJ7tcbu7n5zPTtXq83Qj7y9AazLZmU5BdWTQLjPJ82Cq/nr67GCnWDxWATWxg=="
+  "resolved" "https://registry.npmjs.org/cloudinary/-/cloudinary-1.36.4.tgz"
+  "version" "1.36.4"
   dependencies:
-    "cloudinary-core" "^2.10.2"
-    "core-js" "^3.6.5"
-    "lodash" "^4.17.21"
-    "q" "^1.5.1"
+    "cloudinary-core" "2.13.0"
+    "core-js" "3.30.1"
+    "lodash" "4.17.21"
+    "q" "1.5.1"
   optionalDependencies:
     "proxy-agent" "^5.0.0"
 
@@ -692,10 +692,10 @@
   "resolved" "https://registry.npmjs.org/cookie/-/cookie-0.3.1.tgz"
   "version" "0.3.1"
 
-"core-js@^3.6.5":
-  "integrity" "sha512-+jwgnhg6cQxKYIIjGtAHq2nwUOolo9eoFZ4sHfUH09BLXBgxnH4gA0zEd+t+BO2cNB8idaBtZFcFTRjQJRJmAw=="
-  "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.29.1.tgz"
-  "version" "3.29.1"
+"core-js@3.30.1":
+  "integrity" "sha512-ZNS5nbiSwDTq4hFosEDqm65izl2CWmLz0hARJMyNQBgkUZMIF51cQiMvIQKA6hvuaeWxQDP3hEedM1JZIgTldQ=="
+  "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.30.1.tgz"
+  "version" "3.30.1"
 
 "core-util-is@~1.0.0":
   "integrity" "sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ=="
@@ -1515,7 +1515,7 @@
   "resolved" "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz"
   "version" "4.5.0"
 
-"lodash@^4.17.15", "lodash@^4.17.21", "lodash@>=4.0":
+"lodash@^4.17.15", "lodash@^4.17.21", "lodash@>=4.0", "lodash@4.17.21":
   "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
@@ -2023,7 +2023,7 @@
   "resolved" "https://registry.npmjs.org/punycode/-/punycode-2.3.0.tgz"
   "version" "2.3.0"
 
-"q@^1.5.1":
+"q@1.5.1":
   "integrity" "sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw=="
   "resolved" "https://registry.npmjs.org/q/-/q-1.5.1.tgz"
   "version" "1.5.1"
