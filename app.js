@@ -4,6 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var paypal = require('paypal-rest-sdk');
+
+paypal.configure({
+  'mode': 'sandbox', //sandbox or live
+  'client_id': 'AWtlW8nUEWBcbCKs7aEugjoAhq4rZuoGAZVbTBa1Opqz9oNpnaT5-lJ76DnSMaxh1eFGGU-Z2PUX1jPh',
+  'client_secret': 'EO3DxOn9Xul2eSfcnBI0PRkj4FDoqSWYN5N6qLkXzoq1VjSDyJADsRgQcmG3wfqoxBfIjYQGHBIaTTKz'
+});
+
 var usersRouter = require('./routes/users');
 var productRouter = require('./routes/product');
 
@@ -29,6 +37,7 @@ app.use('/order', require('./routes/order'));
 app.use('/order_detail', require('./routes/order_detail'));
 app.use('/picture', require('./routes/picture'));
 app.use('/comment', require('./routes/comment'));
+app.use('/paypal', require('./routes/paypal_mt'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
