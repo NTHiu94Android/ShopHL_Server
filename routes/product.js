@@ -63,7 +63,7 @@ router.get('/api/get-product-by-idCategory-idBrand/:idCategory/:idBrand', [authe
 //http://localhost:3000/product/api/update-rate-product/5f9f1b0b0b1b1b1b1b1b1b1b/4
 router.post('/api/update-rate-product', [authen], async function (req, res, next) {
     try {
-        const {id, rate} = req.body;
+        const { id, rate } = req.body;
         const product = await product_controller.update_rate_product(id, rate);
         res.json({ error: false, responeTime: new Date(), statusCode: 200, data: product });
     } catch (error) {
@@ -80,10 +80,16 @@ router.post('/api/update-rate-product', [authen], async function (req, res, next
 //http://localhost:3000/product/cpanel/add-product
 router.post('/cpanel/add-product', [authen], async function (req, res, next) {
     try {
-        const {name, price, description, quantity, color, image, rate, sale, idCategory, idBrand} = req.body;
-        const product = await product_controller.add_product(name, price, description, quantity, color, image, rate, sale, idCategory, idBrand);
+        const {
+            name, price, description, quantity, color, image, rate,
+            sale, ram, rom, screen, chip, pin, idCategory, idBrand
+        } = req.body;
+        const product = await product_controller.add_product(
+            name, price, description, quantity, color, image,
+            rate, sale, ram, rom, screen, chip, pin, idCategory, idBrand
+        );
         res.json({ error: false, responeTime: new Date(), statusCode: 200, data: product });
-    } catch (error) { 
+    } catch (error) {
         res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
     }
 });

@@ -10,6 +10,13 @@ const product_model = new Schema({
   image: { type: String },
   rate: { type: Number },
   sale: { type: Number },
+
+  ram: { type: String },
+  rom: { type: String },
+  screen: { type: String },
+  chip: { type: String },
+  pin: { type: String },
+
   idCategory: { type: String },
   idBrand: { type: String },
 });

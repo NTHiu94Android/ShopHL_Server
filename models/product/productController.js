@@ -61,9 +61,9 @@ const update_rate_product = async (_idProduct, rate) => {
 };
 
 //Add product
-const add_product = async (name, price, description, quantity, color, image, rate, sale, idCategory, idBrand) => {
+const add_product = async (name, price, description, quantity, color, image, rate, sale, ram, rom, screen, chip, pin, idCategory, idBrand) => {
     try {
-        const product = await product_service.add_product(name, price, description, quantity, color, image, rate, sale, idCategory, idBrand);
+        const product = await product_service.add_product(name, price, description, quantity, color, image, rate, sale, ram, rom, screen, chip, pin, idCategory, idBrand);
         return product;
     } catch (error) {
         console.log('Error add product: ' + error.message);

@@ -39,8 +39,8 @@ const update_rate_product = async (_idProduct, rate) => {
 };
 
 //Add product
-const add_product = async (name, price, description, quantity, color, image, rate, sale, idCategory, idBrand) => {
-    const product = new product_model({ name, price, description, quantity, color, image, rate, sale, idCategory, idBrand });
+const add_product = async (name, price, description, quantity, color, image, rate, sale, ram, rom, screen, chip, pin, idCategory, idBrand) => {
+    const product = new product_model({ name, price, description, quantity, color, image, rate, sale, ram, rom, screen, chip, pin, idCategory, idBrand });
     await product.save();
     return product;
 };
