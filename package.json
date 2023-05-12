@@ -13,7 +13,7 @@
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "express": "~4.16.1",
-    "firebase-admin": "^11.5.0",
+    "firebase-admin": "^11.8.0",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^9.0.0",

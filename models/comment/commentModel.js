@@ -7,7 +7,6 @@ const cmt_model = new Schema({
   rate: { type: Number },
   idProduct: { type: String },
   idUser: { type: String },
-
 });
 
 module.exports = mongoose.model('Comment', cmt_model);

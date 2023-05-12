@@ -1,14 +1,55 @@
 var express = require('express');
 var router = express.Router();
+
+const jwt = require("jsonwebtoken");
+
 const user_controller = require('../models/user/userController');
 const order_controller = require('../models/order/orderController');
 
+const authen = require('../middleware/auth');
+
 
 //lay user theo id
-router.get('/api/get-user-by-id/:id', async function (req, res, next) {
+router.get('/api/get-user-by-id/:id', [authen], async function (req, res, next) {
   try {
     const { id } = req.params;
     const user = await user_controller.get_user(id);
+    res.json({ error: false, responeTime: new Date(), statusCode: 200, data: user });
+  } catch (error) {
+    res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
+  }
+});
+
+//Đăng nhập user
+//http://localhost:3000/users/api/login
+router.post('/api/login', async function (req, res, next) {
+  try {
+    const { email, password, fcmToken } = req.body;
+    const user = await user_controller.login(email, password, fcmToken);
+    const accessToken = jwt.sign({ user }, 'shhhhh', { expiresIn: 80 * 24 * 60 * 60 });
+    const refreshToken = jwt.sign({ user }, 'shhhhh', { expiresIn: 90 * 24 * 60 * 60 });
+    if (user) {
+      res.json({
+        error: false, responeTime: new Date(), statusCode: 200,
+        data: user, accessToken: accessToken, refreshToken: refreshToken
+      });
+    } else {
+      res.status(422).json({
+        error: true, responeTime: new Date(), statusCode: 422,
+        message: 'Invalid usernamw or password'
+      });
+    };
+  } catch (error) {
+    res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
+  }
+});
+
+//Cap nhat fcmToken
+//http://localhost:3000/users/api/update-fcm-token
+router.post('/api/update-fcm-token', [authen], async function (req, res, next) {
+  try {
+    const { id, fcmToken } = req.body;
+    const user = await user_controller.updateFcmToken(id, fcmToken);
     res.json({ error: false, responeTime: new Date(), statusCode: 200, data: user });
   } catch (error) {
     res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
@@ -43,21 +84,9 @@ router.post('/api/register', async function (req, res, next) {
   }
 });
 
-//Đăng nhập user
-//http://localhost:3000/users/api/login
-router.post('/api/login', async function (req, res, next) {
-  try {
-    const { email, password } = req.body;
-    const user = await user_controller.login(email, password);
-    res.json({ error: false, responeTime: new Date(), statusCode: 200, data: user });
-  } catch (error) {
-    res.json({ error: true, responeTime: new Date(), statusCode: 500, message: error.message });
-  }
-});
-
 //Đổi mật khẩu
 //http://localhost:3000/users/api/change-password
-router.post('/api/change-password', async function (req, res, next) {
+router.post('/api/change-password', [authen], async function (req, res, next) {
   try {
     const { id, new_password, confirm_password } = req.body;
     const user = await user_controller.change_password(id, new_password, confirm_password);
@@ -69,7 +98,7 @@ router.post('/api/change-password', async function (req, res, next) {
 
 //Cap nhat thong tin
 //http://localhost:3000/users/api/update-profile
-router.post('/api/update-profile', async function (req, res, next) {
+router.post('/api/update-profile', [authen], async function (req, res, next) {
   try {
     const { id, email, name, birthday, address, numberPhone, avatar } = req.body;
     const user = await user_controller.update_user(id, email, name, birthday, address, numberPhone, avatar);

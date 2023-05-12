@@ -31,6 +31,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// //Config notification
+// const admin = require('firebase-admin');
+// const serviceAccount = require('./firebaseAdminSdk.json');
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+// });
+
 app.use('/users', usersRouter);
 app.use('/product', productRouter);
 app.use('/order', require('./routes/order'));
@@ -38,6 +45,8 @@ app.use('/order_detail', require('./routes/order_detail'));
 app.use('/picture', require('./routes/picture'));
 app.use('/comment', require('./routes/comment'));
 app.use('/paypal', require('./routes/paypal_mt'));
+app.use('/category', require('./routes/category'));
+app.use('/brand', require('./routes/brand'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

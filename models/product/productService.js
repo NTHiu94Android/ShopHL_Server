@@ -18,13 +18,35 @@ const get_product_by_idBrand = async (_idBrand) => {
     return products;
 };
 
+//Lay product theo idCategory
+const get_product_by_idCategory = async (_idCategory) => {
+    const products = await product_model.find({ idCategory: _idCategory });
+    return products;
+};
+
+//Lay product theo idCategory va idBrand
+const get_product_by_idCategory_idBrand = async (_idCategory, _idBrand) => {
+    const products = await product_model.find({ idCategory: _idCategory, idBrand: _idBrand });
+    return products;
+};
+
+//Cap nhat rate product
+const update_rate_product = async (_idProduct, rate) => {
+    const product = await product_model.findById(_idProduct);
+    product.rate = rate;
+    await product.save();
+    return product;
+};
+
 //Add product
-const add_product = async (name, price, describer, amount, color, brand, listImage, reviews) => {
-    const product = new product_model({ name, price, describer, amount, color, brand, listImage, reviews });
+const add_product = async (name, price, description, quantity, color, image, rate, sale, idCategory, idBrand) => {
+    const product = new product_model({ name, price, description, quantity, color, image, rate, sale, idCategory, idBrand });
     await product.save();
     return product;
 };
 
 module.exports = {
-    add_product, get_product, get_product_by_idBrand, getProducts
+    add_product, get_product, get_product_by_idBrand, 
+    getProducts, get_product_by_idCategory_idBrand,
+    update_rate_product, get_product_by_idCategory
 };

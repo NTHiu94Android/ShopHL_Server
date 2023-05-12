@@ -16,14 +16,23 @@ const get_user = async (_idIser) => {
     const user = await user_model.findById(_idIser);
     return user;
 };
-const login = async (email, password) => {
+const login = async (email, password, fcmtoken) => {
     const user = await user_model.findOne({ email });
     if (user != null && await bcrypt.compare(password, user.password)) {
         //console.log('UserService login: ', user);
+        user.fcmtoken = fcmtoken;
+        await user.save();
         return user;
     }
     return null;
 };
+
+const updateFcmToken = async (_idUser, tokenFcm) => {
+    const user = await user_model.findByIdAndUpdate(
+       { _id: _idUser}, { fcmtoken: tokenFcm }
+    );
+    return user;
+ };
 
 const register = async (email, password, name, birthday, address, numberPhone, avatar) => {
     const salt = bcrypt.genSaltSync(10);
@@ -44,7 +53,7 @@ const register = async (email, password, name, birthday, address, numberPhone, a
 
 const update_user = async (_idUser, email, name, birthday, address, numberPhone, avatar) => {
     const user = await user_model.findByIdAndUpdate(
-        _idUser, { email, name, birthday, address, numberPhone, avatar }
+        { _id: _idUser}, { email, name, birthday, address, numberPhone, avatar }
     );
     return user;
 };
@@ -94,5 +103,5 @@ const change_password = async (id, new_password) => {
 module.exports = { 
     get_user, get_users, login, register, 
     update_user, delete_user, forgot_password, reset_password,
-    get_users_by_username, change_password
+    get_users_by_username, change_password, updateFcmToken
 };

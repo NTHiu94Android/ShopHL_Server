@@ -11,14 +11,6 @@ const get_users = async () => {
     }
 };
 
-const get_user = async (_idUser) => {
-    try {
-        const user = await userService.get_user(_idUser);
-        return user;
-    } catch (error) {
-        console.log('Error get user: ' + error.message);
-    }
-};
 const get_users_by_username = async (username) => {
     try {
         const user = await userService.get_users_by_username(username);
@@ -27,15 +19,34 @@ const get_users_by_username = async (username) => {
         console.log('Error get user by username: ' + error.message);
     }
 };
-const login = async (email, password) => {
+
+const get_user = async (_idUser) => {
     try {
-        const user = await userService.login(email, password);
+        const user = await userService.get_user(_idUser);
+        return user;
+    } catch (error) {
+        console.log('Error get user: ' + error.message);
+    }
+};
+
+const login = async (email, password, fcmtoken) => {
+    try {
+        const user = await userService.login(email, password, fcmtoken);
         if (user) {
             return user;
         }
         return null;
     } catch (error) {
         console.log('Error login: ' + error.message);
+    }
+};
+
+const updateFcmToken = async (_idUser, tokenFcm) => {
+    try {
+        const user = await userService.updateFcmToken(_idUser, tokenFcm);
+        return user;
+    } catch (error) {
+        console.log('Error updateFcmToken: ' + error.message);
     }
 };
 
@@ -137,5 +148,5 @@ const change_password = async ( id, new_password, confirm_password) => {
 module.exports = { 
     get_user, get_users, login, register, 
     update_user, delete_user, forgot_password, reset_password,
-    get_users_by_username, change_password
+    get_users_by_username, change_password, updateFcmToken
 }

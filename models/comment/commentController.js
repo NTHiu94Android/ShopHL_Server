@@ -20,7 +20,7 @@ const get_cmt_by_idUser_and_idProduct = async (idUser, idProduct) => {
    }
 };
 
-//Lay comment theo id
+//Lay comment theo idComment
 const get_cmt_by_id = async (idCmt) => {
    try {
       const cmt = await cmt_service.get_cmt_by_id(idCmt);
@@ -62,5 +62,6 @@ const update_cmt = async (_idCmt, content, rate) => {
 
 
 module.exports = {
-   add_cmt, get_cmt_by_idUser, get_cmt_by_idUser_and_idProduct, get_cmt_by_id, get_cmt_by_idProduct, update_cmt
+   add_cmt, get_cmt_by_idUser, get_cmt_by_idUser_and_idProduct, 
+   get_cmt_by_id, get_cmt_by_idProduct, update_cmt
 };

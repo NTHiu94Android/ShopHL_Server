@@ -12,13 +12,13 @@ const get_cmt_by_idUser_and_idProduct = async (_idUser, _idProduct) => {
    return cmts;
 };
 
-//Lay comment theo id
+//Lay comment theo idComment
 const get_cmt_by_id = async (_idCmt) => {
    const cmt = await cmt_model.findById(_idCmt);
    return cmt;
 };
 
-//Lay cmt theo idProduct
+//Lay danh sach cmt theo idProduct
 const get_cmt_by_idProduct = async (_idProduct) => {
    const cmts = await cmt_model.find({ idProduct: _idProduct });
    return cmts;

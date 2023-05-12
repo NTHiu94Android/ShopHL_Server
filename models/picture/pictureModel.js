@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const picture_model = new Schema({
   url: { type: String },
-  color: { type: String },
   idProduct: { type: String },
+  idReview: { type: String },
+  idMessage: { type: String },
 });
 
 module.exports = mongoose.model('Picture', picture_model);

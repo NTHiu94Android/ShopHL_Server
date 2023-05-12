@@ -10,16 +10,6 @@ const get_picture = async (_idPic) => {
     }
 };
 
-//Lay pictures theo color va idProduct
-const get_pictures_by_color = async (color, idProduct) => {
-    try {
-        const pictures = await picture_service.get_pictures_by_color(color, idProduct);
-        return pictures;
-    } catch (error) {
-        console.log('Error get pictures by color: ' + error.message);
-    }
-};
-
 //Lay pictures theo idProduct
 const get_pictures_by_idProduct = async (idProduct) => {
     try {
@@ -31,9 +21,9 @@ const get_pictures_by_idProduct = async (idProduct) => {
 }
 
 // Them picture
-const add_picture = async (url, color, idProduct) => {
+const add_picture = async (url, idProduct, idReview, idMessage) => {
     try {
-        const picture = await picture_service.add_picture(url, color, idProduct);
+        const picture = await picture_service.add_picture(url, idProduct, idReview, idMessage);
         return picture;
     } catch (error) {
         console.log('Error add picture: ' + error.message);
@@ -41,5 +31,5 @@ const add_picture = async (url, color, idProduct) => {
 };
 
 module.exports = {
-    add_picture, get_picture, get_pictures_by_color, get_pictures_by_idProduct
+    add_picture, get_picture, get_pictures_by_idProduct
 }
